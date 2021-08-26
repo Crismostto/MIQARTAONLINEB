@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedido;
+use App\Models\HistoricoMesa;
 use Illuminate\Http\Request;
 
-class PedidoController extends Controller
+class HistoricoMesaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PedidoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\HistoricoMesa  $historicoMesa
      * @return \Illuminate\Http\Response
      */
-    public function show(Pedido $pedido)
+    public function show(HistoricoMesa $historicoMesa)
     {
         //
     }
@@ -52,10 +52,10 @@ class PedidoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\HistoricoMesa  $historicoMesa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pedido $pedido)
+    public function edit(HistoricoMesa $historicoMesa)
     {
         //
     }
@@ -64,10 +64,10 @@ class PedidoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\HistoricoMesa  $historicoMesa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Pedido $pedido)
+    public function update(Request $request, HistoricoMesa $historicoMesa)
     {
         //
     }
@@ -75,10 +75,10 @@ class PedidoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Pedido  $pedido
+     * @param  \App\Models\HistoricoMesa  $historicoMesa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pedido $pedido)
+    public function destroy(HistoricoMesa $historicoMesa)
     {
         //
     }

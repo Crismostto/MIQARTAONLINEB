@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoriaArticulo;
+use App\Models\HistoricoMesaPedido;
 use Illuminate\Http\Request;
 
-class CategoriaArticuloController extends Controller
+class HistoricoMesaPedidoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class CategoriaArticuloController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CategoriaArticulo  $categoriaArticulo
+     * @param  \App\Models\HistoricoMesaPedido  $historicoMesaPedido
      * @return \Illuminate\Http\Response
      */
-    public function show(CategoriaArticulo $categoriaArticulo)
+    public function show(HistoricoMesaPedido $historicoMesaPedido)
     {
         //
     }
@@ -52,10 +52,10 @@ class CategoriaArticuloController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CategoriaArticulo  $categoriaArticulo
+     * @param  \App\Models\HistoricoMesaPedido  $historicoMesaPedido
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoriaArticulo $categoriaArticulo)
+    public function edit(HistoricoMesaPedido $historicoMesaPedido)
     {
         //
     }
@@ -64,10 +64,10 @@ class CategoriaArticuloController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CategoriaArticulo  $categoriaArticulo
+     * @param  \App\Models\HistoricoMesaPedido  $historicoMesaPedido
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CategoriaArticulo $categoriaArticulo)
+    public function update(Request $request, HistoricoMesaPedido $historicoMesaPedido)
     {
         //
     }
@@ -75,10 +75,10 @@ class CategoriaArticuloController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CategoriaArticulo  $categoriaArticulo
+     * @param  \App\Models\HistoricoMesaPedido  $historicoMesaPedido
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoriaArticulo $categoriaArticulo)
+    public function destroy(HistoricoMesaPedido $historicoMesaPedido)
     {
         //
     }

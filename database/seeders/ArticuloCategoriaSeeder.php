@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class HistoricoDetalleSeeder extends Seeder
+class ArticuloCategoriaSeeder extends Seeder
 {
     /**
      * Run the database seeds.

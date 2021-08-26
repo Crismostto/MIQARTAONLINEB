@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Pedido;
+use App\Models\HistoricoMesa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PedidoFactory extends Factory
+class HistoricoMesaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Pedido::class;
+    protected $model = HistoricoMesa::class;
 
     /**
      * Define the model's default state.

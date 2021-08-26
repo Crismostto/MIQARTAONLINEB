@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Historico;
+use App\Models\ArticuloCategoria;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class HistoricoFactory extends Factory
+class ArticuloCategoriaFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Historico::class;
+    protected $model = ArticuloCategoria::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,10 @@ class HistoricoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            //'name' => $this->faker->name(),
+            
+            'tipo'=>$this-> faker-> numberBetween($min=1 , $max=10),
+            'nombre'=>$this-> faker -> name(), 
         ];
     }
 }

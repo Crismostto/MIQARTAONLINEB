@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\HistoricoDetalle;
+use App\Models\ArticuloCategoria;
 use Illuminate\Http\Request;
 
-class HistoricoDetalleController extends Controller
+class ArticuloCategoriaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class HistoricoDetalleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\HistoricoDetalle  $historicoDetalle
+     * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(HistoricoDetalle $historicoDetalle)
+    public function show(ArticuloCategoria $articuloCategoria)
     {
         //
     }
@@ -52,10 +52,10 @@ class HistoricoDetalleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\HistoricoDetalle  $historicoDetalle
+     * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function edit(HistoricoDetalle $historicoDetalle)
+    public function edit(ArticuloCategoria $articuloCategoria)
     {
         //
     }
@@ -64,10 +64,10 @@ class HistoricoDetalleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\HistoricoDetalle  $historicoDetalle
+     * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, HistoricoDetalle $historicoDetalle)
+    public function update(Request $request, ArticuloCategoria $articuloCategoria)
     {
         //
     }
@@ -75,10 +75,10 @@ class HistoricoDetalleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\HistoricoDetalle  $historicoDetalle
+     * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(HistoricoDetalle $historicoDetalle)
+    public function destroy(ArticuloCategoria $articuloCategoria)
     {
         //
     }
