@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MesaController;
+use App\Http\Controllers\MesaPedidoController;
+use App\Http\Controllers\ArticuloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('mesas', MesaController::class);
+Route::resource('pedidos', MesaPedidoController::class);
+Route::resource('articulos', ArticuloController::class);
+
