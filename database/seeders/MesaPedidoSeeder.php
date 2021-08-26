@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class CategoriaArticuloSeeder extends Seeder
+class MesaPedidoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,5 @@ class CategoriaArticuloSeeder extends Seeder
     public function run()
     {
         //
-        // factory('App\Models\CategoriaArticulo', 10) -> create();
     }
 }

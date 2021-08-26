@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidosTable extends Migration
+class CreateHistoricoMesasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('historico_mesas', function (Blueprint $table) {
             $table->id();
-            $table->integer('cantidad');
-            $table->double('precio');
             $table->unsignedBigInteger('mesa_id');
-            $table->foreing('mesa_id') -> references('id') ->on ('mesas');
-            $table->unsignedBigInteger('articulo_id');
-            $table->foreing('articulo_id') -> references('id') ->on ('articulos');
-            $table-> datetime('fecha');
+            $table->foreign('mesa_id') -> references('id') ->on ('mesas');
+            $table->double('precio');
+            $table->datetime('fecha_apertura');
+            $table->datetime('fecha_cierre');
             $table->timestamps();
         });
     }
@@ -33,6 +31,6 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('historico_mesas');
     }
 }

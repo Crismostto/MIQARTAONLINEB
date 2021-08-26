@@ -16,7 +16,7 @@ class CreateMesasTable extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
             $table-> integer('estado');
-            $table-> datetime('fecha');
+            $table-> datetime('fechaApertura');
             $table->timestamps();
         });
     }

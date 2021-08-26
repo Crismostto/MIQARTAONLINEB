@@ -18,7 +18,8 @@ class CreateArticulosTable extends Migration
             $table->string('nombre');
             $table->double('precio');
             $table->string('descripcion');
-            $table->unsignedBigInteger('CategoriaArticulo_id');
+            $table->unsignedBigInteger('ArticuloCategorias_id');
+            $table->foreign('ArticuloCategorias_id') -> references('id') ->on('articulo_categorias');
             $table->timestamps();
         });
     }

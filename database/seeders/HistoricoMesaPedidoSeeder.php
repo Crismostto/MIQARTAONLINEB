@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-class HistoricoSeeder extends Seeder
+class HistoricoMesaPedidoSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHistoricoDetallesTable extends Migration
+class CreateArticuloCategoriasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateHistoricoDetallesTable extends Migration
      */
     public function up()
     {
-        Schema::create('historico_detalles', function (Blueprint $table) {
+        Schema::create('articulo_categorias', function (Blueprint $table) {
             $table->id();
+            $table->integer('tipo');
+            $table->string('nombre');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateHistoricoDetallesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('historico_detalles');
+        Schema::dropIfExists('articulo_categorias');
     }
 }

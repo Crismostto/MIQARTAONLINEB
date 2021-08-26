@@ -12,12 +12,12 @@ class Articulo extends Model
 
     //1 a muchos 
     public function categoriaArticulo(){
-        return $this-> belongsTo('App\Models\CategoriaArticulo');
+        return $this-> belongsTo('App\Models\ArticuloCategoria');
 
     }
 
-    public function pedido(){
-        return $this-> belongsTo('App\Models\Pedido');
+    public function mesaPedido(){
+        return $this-> belongsTo('App\Models\MesaPedido');
 
     }
 }
