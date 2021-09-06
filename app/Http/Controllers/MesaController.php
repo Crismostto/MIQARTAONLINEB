@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mesa;
 use Illuminate\Http\Request;
+use BD;
 
 class MesaController extends Controller
 {
@@ -16,7 +17,7 @@ class MesaController extends Controller
     {
         // 
         echo 'Estamos en mesa';
-        $mesa = Mesa::all();
+        $mesa = Mesa::all();  
         return $mesa;
     }
 

@@ -9,6 +9,10 @@ class ArticuloCategoria extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'nombre','tipo' 
+    ];
+
       //1 a muchos 
       public function articulos(){
         return $this-> hasMany('App\Models\Articulo');
