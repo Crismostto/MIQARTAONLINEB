@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticuloController;
+use App\Http\Controllers\MesaController;
+use App\Http\Controllers\ArticuloCategoriaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::Resource('articulos/categorias', ArticuloCategoriaController::class);
+Route::Resource('articulos', ArticuloController::class);
+Route::Resource('mesas', MesaController::class);

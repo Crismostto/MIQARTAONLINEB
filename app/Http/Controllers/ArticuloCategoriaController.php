@@ -14,7 +14,8 @@ class ArticuloCategoriaController extends Controller
      */
     public function index()
     {
-        //
+        $categoria = ArticuloCategoria::all();
+        return $categoria;
     }
 
     /**
@@ -35,7 +36,9 @@ class ArticuloCategoriaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = ArticuloCategoria::create($request -> all());
+        return $categoria;
+
     }
 
     /**
@@ -44,9 +47,10 @@ class ArticuloCategoriaController extends Controller
      * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function show(ArticuloCategoria $articuloCategoria)
+    public function show($id)
     {
-        //
+        $categoria = ArticuloCategoria::find($id);
+        return $categoria;
     }
 
     /**
@@ -67,9 +71,12 @@ class ArticuloCategoriaController extends Controller
      * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ArticuloCategoria $articuloCategoria)
+    public function update(Request $request, $id)
     {
-        //
+        $categoria= ArticuloCategoria::findOrFail($id);
+        $categoria->update($request->all());
+        return $categoria;
+
     }
 
     /**
@@ -78,8 +85,9 @@ class ArticuloCategoriaController extends Controller
      * @param  \App\Models\ArticuloCategoria  $articuloCategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ArticuloCategoria $articuloCategoria)
+    public function destroy($id)
     {
-        //
+        $categoria= ArticuloCategoria::findOrFail($id);
+        $categoria->delete();
     }
 }

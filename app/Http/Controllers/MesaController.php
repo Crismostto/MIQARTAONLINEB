@@ -15,6 +15,8 @@ class MesaController extends Controller
     public function index()
     {
         //
+        $mesa = Mesa::all();
+        return $mesa;
     }
 
     /**
@@ -35,7 +37,8 @@ class MesaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mesa = Mesa::create($request -> all());
+        return $mesa;
     }
 
     /**
@@ -44,9 +47,10 @@ class MesaController extends Controller
      * @param  \App\Models\Mesa  $mesa
      * @return \Illuminate\Http\Response
      */
-    public function show(Mesa $mesa)
+    public function show($id)
     {
-        //
+        $mesa = Mesa::find($id);
+        return $mesa;
     }
 
     /**
@@ -67,9 +71,11 @@ class MesaController extends Controller
      * @param  \App\Models\Mesa  $mesa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Mesa $mesa)
+    public function update(Request $request, $id)
     {
-        //
+        $mesa= Mesa::findOrFail($id);
+        $mesa->update($request->all());
+        return $mesa;
     }
 
     /**
@@ -78,8 +84,9 @@ class MesaController extends Controller
      * @param  \App\Models\Mesa  $mesa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Mesa $mesa)
+    public function destroy($id)
     {
-        //
+        $mesa= Mesa::findOrFail($id);
+        $mesa->delete();
     }
 }

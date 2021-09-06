@@ -12,7 +12,12 @@ class Mesa extends Model
     
     //1 a muchos
     public function pedidos(){
-        return $this-> hasMany('App\Models\Pedido');
+        return $this-> hasMany('App\Models\MesaPedido');
+
+    }
+
+    public function historicoMesa(){
+        return $this-> hasMany('App\Models\HistoricoMesa');
 
     }
 }
