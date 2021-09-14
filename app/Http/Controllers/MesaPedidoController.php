@@ -14,7 +14,10 @@ class MesaPedidoController extends Controller
      */
     public function index()
     {
-        //
+        $mesaPedido=MesaPedido::all();
+        echo "pasa";
+        return $mesaPedido;
+        
     }
 
     /**

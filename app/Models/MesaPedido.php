@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class MesaPedido extends Model
 {
     use HasFactory;
+        
+    protected $fillable = [
+        'cantidad','precio','mesa_id','articulo_id' 
+    ];
 
         //1 a muchos 
         public function mesa(){
