@@ -30,10 +30,12 @@ class MesaPedidoController extends Controller
     
         // dd($articuloNombre);
 
-        $consultaPedidos = 'SELECT articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio
+        $consultaPedidos = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio
         FROM articulos INNER JOIN mesa_pedidos
-        WHERE articulos.id = mesa_pedidos.articulo_id';
+        WHERE articulos.id = mesa_pedidos.articulo_id
+        ORDER BY mesa_pedidos.id';
         $vistaPedidos = DB::select($consultaPedidos);
+        
         
         return $vistaPedidos;
         
