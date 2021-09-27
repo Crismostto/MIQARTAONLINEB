@@ -13,7 +13,6 @@ class Mesa extends Model
     protected $fillable = [
         'estado','fechaApertura' 
     ];
-    
     //1 a muchos
     public function pedidos(){
         return $this-> hasMany('App\Models\MesaPedido');

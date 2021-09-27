@@ -14,6 +14,10 @@ class Articulo extends Model
         'nombre','precio','descripcion','ArticuloCategorias_id' 
     ];
 
+    protected $fillable = [
+        'nombre','precio','descripcion','ArticuloCategorias_id' 
+    ];
+
     //1 a muchos 
     public function categoriaArticulo(){
         return $this-> belongsTo('App\Models\ArticuloCategoria');

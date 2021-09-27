@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\MesaPedido;
+
 use Illuminate\Http\Request;
 
 class MesaPedidoController extends Controller
@@ -14,7 +16,29 @@ class MesaPedidoController extends Controller
      */
     public function index()
     {
-        //
+        
+        // $mesaPedido=MesaPedido::all();
+        // echo "pasa";
+        // return $mesaPedido;
+
+
+        // $articuloNombre = Articulo::
+        // join('mesa_pedidos', 'articulos.id', '=', 'mesa_pedidos.articulo_id')
+        // ->select('articulos.nombre')
+        // ->where('articulos.id = mesa_pedidos.articulo_id')
+        // ->get();
+    
+        // dd($articuloNombre);
+
+        $consultaPedidos = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio
+        FROM articulos INNER JOIN mesa_pedidos
+        WHERE articulos.id = mesa_pedidos.articulo_id
+        ORDER BY mesa_pedidos.id';
+        $vistaPedidos = DB::select($consultaPedidos);
+        
+        
+        return $vistaPedidos;
+        
     }
 
     /**
@@ -81,5 +105,13 @@ class MesaPedidoController extends Controller
     public function destroy(MesaPedido $mesaPedido)
     {
         //
+    }
+    public function PedidosInfo(){
+    //     $articuloNombre = DB::select('select articulos.nombre
+    //     from articulos innerjoin mesa_pedidos
+    //     where articulos.id = mesa_pedidos.articulo_id','');
+    //     echo "pedidos info :)";
+    // }
+
     }
 }
