@@ -16,7 +16,6 @@ class MesaController extends Controller
     public function index()
     {
         // 
-        echo 'Estamos en mesa';
         $mesa = Mesa::all();  
         return $mesa;
     }
