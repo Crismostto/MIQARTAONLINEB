@@ -16,9 +16,8 @@ class MesaController extends Controller
      */
     public function index()
     {
-        //
         $mesa = Mesa::all();
-        return $mesa;
+         return $mesa;
     }
  
 
@@ -92,4 +91,6 @@ class MesaController extends Controller
         $mesa= Mesa::findOrFail($id);
         $mesa->delete();
     }
+    
+  
 }
