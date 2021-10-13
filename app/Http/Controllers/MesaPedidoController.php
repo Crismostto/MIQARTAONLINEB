@@ -16,29 +16,8 @@ class MesaPedidoController extends Controller
      */
     public function index()
     {
-        
-        // $mesaPedido=MesaPedido::all();
-        // echo "pasa";
-        // return $mesaPedido;
-
-
-        // $articuloNombre = Articulo::
-        // join('mesa_pedidos', 'articulos.id', '=', 'mesa_pedidos.articulo_id')
-        // ->select('articulos.nombre')
-        // ->where('articulos.id = mesa_pedidos.articulo_id')
-        // ->get();
-    
-        // dd($articuloNombre);
-
-        $consultaPedidos = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio
-        FROM articulos INNER JOIN mesa_pedidos
-        WHERE articulos.id = mesa_pedidos.articulo_id
-        ORDER BY mesa_pedidos.id';
-        $vistaPedidos = DB::select($consultaPedidos);
-        
-        
-        return $vistaPedidos;
-        
+        $pedido = MesaPedido::all();
+        return $pedido;
     }
 
     /**
@@ -68,9 +47,10 @@ class MesaPedidoController extends Controller
      * @param  \App\Models\MesaPedido  $mesaPedido
      * @return \Illuminate\Http\Response
      */
-    public function show(MesaPedido $mesaPedido)
+    public function show($id)
     {
-        //
+        $mesaP = MesaPedido::find($id);
+        return $mesaP;
     }
 
     /**
@@ -106,12 +86,29 @@ class MesaPedidoController extends Controller
     {
         //
     }
-    public function PedidosInfo(){
-    //     $articuloNombre = DB::select('select articulos.nombre
-    //     from articulos innerjoin mesa_pedidos
-    //     where articulos.id = mesa_pedidos.articulo_id','');
-    //     echo "pedidos info :)";
-    // }
+    public function lista($id)
+    {
 
+        $consultaPedido =
+            'SELECT mesa_pedidos.id,articulos.nombre,
+        mesa_pedidos.cantidad ,
+        mesa_pedidos.precio,
+        mesa_pedidos.mesa_id, 
+         mesa_pedidos.cantidad*mesa_pedidos.precio AS Total
+    FROM articulos INNER JOIN mesa_pedidos on articulos.id = mesa_pedidos.articulo_id
+    WHERE  mesa_pedidos.mesa_id = ' . $id . ' ';
+
+        $vistaPedido = DB::select($consultaPedido);
+        return $vistaPedido;
+    }
+
+    public function transaccionPedido($id){
+        echo "Estamos en el cierre del pedido";
+        $Mesas = 'INSERT INTO historico_mesas( historico_mesas.mesa_id, historico_mesas.fecha_apertura, precio, historico_mesas.fecha_cierre)
+        SELECT mesas.id, mesas.fechaApertura, 0 , CURRENT_TIMESTAMP() FROM mesas
+        WHERE mesas.id = '. $id .' ';
+
+        $vistaMesa = DB::select($Mesas);
+        return $vistaMesa;
     }
 }

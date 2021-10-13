@@ -20,5 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Route::Resource('pedidos', MesaPedidoController::class);
+
 Route::Resource('pedidos', MesaPedidoController::class);
 
+Route::get('pedidos/mesa/{id}',[MesaPedidoController::class, 'lista'],function($id){
+        return $id;
+});
+
+Route::post('pedidos/cierre/{id}',[MesaPedidoController::class, 'transaccionPedido'],function($id){
+    return $id;
+});;
