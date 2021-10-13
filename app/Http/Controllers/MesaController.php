@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mesa;
+use App\Models\MesaPedido;
+use App\Models\Articulo;
 use Illuminate\Http\Request;
 
 class MesaController extends Controller
@@ -14,10 +16,10 @@ class MesaController extends Controller
      */
     public function index()
     {
-        //
         $mesa = Mesa::all();
-        return $mesa;
+         return $mesa;
     }
+ 
 
     /**
      * Show the form for creating a new resource.
@@ -89,4 +91,6 @@ class MesaController extends Controller
         $mesa= Mesa::findOrFail($id);
         $mesa->delete();
     }
+    
+  
 }

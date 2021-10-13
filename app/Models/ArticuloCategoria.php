@@ -9,9 +9,9 @@ class ArticuloCategoria extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-      'id','nombre','tipo' 
-  ];
+      protected $fillable = [
+      'nombre','tipo' 
+      ];
 
       //1 a muchos 
       public function articulos(){

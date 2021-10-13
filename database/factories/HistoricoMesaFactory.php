@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Mesa;
 use App\Models\HistoricoMesa;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,8 +22,12 @@ class HistoricoMesaFactory extends Factory
      */
     public function definition()
     {
+        $mesa = Mesa::all()->random()->id;
         return [
-            //
+            'mesa_id'=>$mesa,
+            'precio'=>$this-> faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
+            'fecha_apertura'=>$this-> faker->dateTime($max = 'now', $timezone = null),
+            'fecha_cierre'=>$this-> faker->dateTime($max = 'now', $timezone = null)
         ];
     }
 }

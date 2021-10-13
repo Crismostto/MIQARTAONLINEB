@@ -9,6 +9,10 @@ class HistoricoMesa extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'mesa_id','fecha_apertura', 'fecha_cierre' 
+    ];
+
     public function mesa(){
         return $this-> belongsTo('App\Models\Mesa');
 

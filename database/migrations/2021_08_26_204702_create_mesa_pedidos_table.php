@@ -21,7 +21,7 @@ class CreateMesaPedidosTable extends Migration
             $table->foreign('mesa_id') -> references('id') ->on ('mesas');
             $table->unsignedBigInteger('articulo_id');
             $table->foreign('articulo_id') -> references('id') ->on ('articulos');
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 

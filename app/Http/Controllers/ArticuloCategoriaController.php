@@ -14,6 +14,7 @@ class ArticuloCategoriaController extends Controller
      */
     public function index()
     {
+        
         $categoria = ArticuloCategoria::all();
         return $categoria;
     }
@@ -23,6 +24,10 @@ class ArticuloCategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    
+
+
     public function create()
     {
         //
