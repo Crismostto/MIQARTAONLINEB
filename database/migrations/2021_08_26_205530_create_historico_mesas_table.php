@@ -17,7 +17,6 @@ class CreateHistoricoMesasTable extends Migration
             $table->id();
             $table->unsignedBigInteger('mesa_id');
             $table->foreign('mesa_id') -> references('id') ->on ('mesas');
-            $table->double('precio');
             $table->datetime('fecha_apertura');
             $table->datetime('fecha_cierre');
             $table->timestamps();

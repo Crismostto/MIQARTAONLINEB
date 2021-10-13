@@ -86,15 +86,11 @@ class MesaPedidoController extends Controller
     {
         //
     }
+
     public function lista($id)
     {
 
-        $consultaPedido =
-            'SELECT mesa_pedidos.id,articulos.nombre,
-        mesa_pedidos.cantidad ,
-        mesa_pedidos.precio,
-        mesa_pedidos.mesa_id, 
-         mesa_pedidos.cantidad*mesa_pedidos.precio AS Total
+        $consultaPedido = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio, mesa_pedidos.mesa_id, mesa_pedidos.precio * mesa_pedidos.cantidad AS Total
     FROM articulos INNER JOIN mesa_pedidos on articulos.id = mesa_pedidos.articulo_id
     WHERE  mesa_pedidos.mesa_id = ' . $id . ' ';
 
@@ -102,13 +98,33 @@ class MesaPedidoController extends Controller
         return $vistaPedido;
     }
 
-    public function transaccionPedido($id){
-        echo "Estamos en el cierre del pedido";
-        $Mesas = 'INSERT INTO historico_mesas( historico_mesas.mesa_id, historico_mesas.fecha_apertura, precio, historico_mesas.fecha_cierre)
-        SELECT mesas.id, mesas.fechaApertura, 0 , CURRENT_TIMESTAMP() FROM mesas
-        WHERE mesas.id = '. $id .' ';
+    public function cierreMesa($id)
+    {
 
-        $vistaMesa = DB::select($Mesas);
-        return $vistaMesa;
+        $generarHistoricoMesa = 'INSERT INTO historico_mesas(historico_mesas.mesa_id,historico_mesas.fecha_apertura,historico_mesas.fecha_cierre)
+        SELECT mesas.id, mesas.fechaApertura, CURRENT_TIMESTAMP()
+        FROM mesas
+        WHERE mesas.id = ' . $id . ' ';
+
+        $cierreMesa = DB::select($generarHistoricoMesa);
+        return $cierreMesa;
+    }
+
+    public function cierrePedido($id)
+    {
+      $mesa = 1;  
+        $generarHistoricoPedido = 
+        'INSERT INTO historico_mesa_pedidos (
+            historico_mesa_pedidos.historicoMesa_id,
+            historico_mesa_pedidos.articulo_id,
+            historico_mesa_pedidos.cantidad,
+            historico_mesa_pedidos.precio)
+        SELECT historico_mesas.id, mesa_pedidos.articulo_id, mesa_pedidos.cantidad, mesa_pedidos.precio 
+        FROM mesa_pedidos 
+        INNER JOIN historico_mesas
+        WHERE  historico_mesas.id = ' . $id .' AND mesa_pedidos.mesa_id = ' . $mesa . ' ';
+
+        $cierrePedido = DB::select($generarHistoricoPedido);
+        return $cierrePedido;
     }
 }
