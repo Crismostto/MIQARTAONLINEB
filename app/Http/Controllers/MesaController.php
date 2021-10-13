@@ -6,6 +6,7 @@ use App\Models\Mesa;
 use App\Models\MesaPedido;
 use App\Models\Articulo;
 use Illuminate\Http\Request;
+use BD;
 
 class MesaController extends Controller
 {
@@ -39,8 +40,10 @@ class MesaController extends Controller
      */
     public function store(Request $request)
     {
+        
         $mesa = Mesa::create($request -> all());
         return $mesa;
+
     }
 
     /**
@@ -51,6 +54,7 @@ class MesaController extends Controller
      */
     public function show($id)
     {
+        //
         $mesa = Mesa::find($id);
         return $mesa;
     }
@@ -75,8 +79,9 @@ class MesaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $mesa= Mesa::findOrFail($id);
-        $mesa->update($request->all());
+        //
+        $mesa = Mesa::findOrFail($id);
+        $mesa-> update($request -> all());
         return $mesa;
     }
 
@@ -88,8 +93,9 @@ class MesaController extends Controller
      */
     public function destroy($id)
     {
-        $mesa= Mesa::findOrFail($id);
-        $mesa->delete();
+        //
+        $mesa = Mesa::findOrFail($id);
+        $mesa -> delete();
     }
     
   
