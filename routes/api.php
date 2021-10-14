@@ -28,10 +28,5 @@ Route::get('pedidos/lista/{id}',[MesaPedidoController::class, 'lista'],function(
         return $id;
 });
 
-Route::post('mesas/cierre/{id}',[MesaPedidoController::class, 'cierreMesa'],function($id){
-    return $id;
-});
+Route::post('cierre',[MesaPedidoController::class, 'cierreTotal']);
 
-Route::post('pedidos/cierre/{id}',[MesaPedidoController::class, 'cierrePedido'],function($id){
-    return $id;
-});
