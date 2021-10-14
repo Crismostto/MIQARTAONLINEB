@@ -4,7 +4,7 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\ArticuloCategoriaController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MesaPedidoController;
+
 
 
 /*

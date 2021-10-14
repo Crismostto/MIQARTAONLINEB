@@ -9,11 +9,7 @@ use App\Models\CategoriaArticulo;
 class Articulo extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [
-        'nombre','precio','descripcion','ArticuloCategorias_id' 
-    ];
-
+    protected $fillable = ['nombre', 'precio' , 'descripcion', 'ArticuloCategorias_id'];
     //1 a muchos 
     public function categoriaArticulo(){
         return $this-> belongsTo('App\Models\ArticuloCategoria');
