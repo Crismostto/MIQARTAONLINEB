@@ -15,6 +15,8 @@ class ArticuloController extends Controller
     public function index()
     {
         //
+        $articulo = Articulo::all();
+        return $articulo;
     }
 
     /**
@@ -35,7 +37,8 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articulo = Articulo::create($request -> all());
+        return $articulo;
     }
 
     /**
@@ -44,9 +47,10 @@ class ArticuloController extends Controller
      * @param  \App\Models\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function show(Articulo $articulo)
+    public function show($id)
     {
-        //
+        $articulo = Articulo::find($id);
+        return $articulo;
     }
 
     /**
@@ -67,9 +71,11 @@ class ArticuloController extends Controller
      * @param  \App\Models\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Articulo $articulo)
+    public function update(Request $request, $id)
     {
-        //
+        $articulo= Articulo::findOrFail($id);
+        $articulo->update($request->all());
+        return $articulo;
     }
 
     /**
@@ -78,8 +84,9 @@ class ArticuloController extends Controller
      * @param  \App\Models\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Articulo $articulo)
+    public function destroy($id)
     {
-        //
+        $articulo= Articulo::findOrFail($id);
+        $articulo->delete();
     }
 }

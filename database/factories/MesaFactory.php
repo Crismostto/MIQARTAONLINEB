@@ -22,7 +22,8 @@ class MesaFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'estado'=>$this-> faker->numberBetween($min = 0, $max = 2),
+            'fechaApertura'=>$this-> faker->dateTime($max = 'now', $timezone = null)
         ];
     }
 }

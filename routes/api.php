@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MesaPedidoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+// Route::Resource('pedidos', MesaPedidoController::class);
+Route::Resource('pedidos', MesaPedidoController::class);
+
+Route::get('pedidos/lista/{id}',[MesaPedidoController::class, 'lista'],function($id){
+        return $id;
+});
+
+Route::post('mesas/cierre/{id}',[MesaPedidoController::class, 'cierreMesa'],function($id){
+    return $id;
+});
+
+Route::post('pedidos/cierre/{id}',[MesaPedidoController::class, 'cierrePedido'],function($id){
+    return $id;
 });

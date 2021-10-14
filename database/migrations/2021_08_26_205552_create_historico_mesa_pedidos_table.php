@@ -15,8 +15,8 @@ class CreateHistoricoMesaPedidosTable extends Migration
     {
         Schema::create('historico_mesa_pedidos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('historico_id');
-            $table->foreign('historico_id') -> references('id') ->on ('historico_mesas');
+            $table->unsignedBigInteger('historicoMesa_id');
+            $table->foreign('historicoMesa_id') -> references('id') ->on ('historico_mesas');
             $table->unsignedBigInteger('articulo_id');
             $table->foreign('articulo_id') -> references('id') ->on ('articulos');
             $table->integer('cantidad');
