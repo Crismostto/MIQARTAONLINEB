@@ -14,7 +14,8 @@ class HistoricoMesaController extends Controller
      */
     public function index()
     {
-        //
+        $historicoMesa = HistoricoMesa::all();
+        return $historicoMesa;
     }
 
     /**

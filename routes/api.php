@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\HistoricoMesaController;
+use App\Http\Controllers\HistoricoMesaPedidoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MesaPedidoController;
-
+use App\Models\HistoricoMesa;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,4 +29,14 @@ Route::get('pedidos/mesa/{id}',[MesaPedidoController::class, 'lista'],function($
 });
 
 Route::post('cierre',[MesaPedidoController::class, 'cierreTotal']);
+
+Route::Resource('historico/mesas', HistoricoMesaController::class);
+
+Route::get('historico/pedidos/{id}',[HistoricoMesaPedidoController::class, 'lista'],function($id){
+    return $id;
+});
+
+Route::Resource('historico/pedidos', HistoricoMesaPedidoController::class);
+
+
 

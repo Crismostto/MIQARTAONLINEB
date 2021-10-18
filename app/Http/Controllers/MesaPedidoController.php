@@ -141,8 +141,17 @@ class MesaPedidoController extends Controller
                 DB::rollback();
                 return response()->json(['message' => 'Error']);
             }
-           
+            
+            $this->borrarPedido($request);
             return response()->json(['message' => 'Success']);
+    }
+
+    public function borrarPedido(Request $request){
+       $id = $request->id;
+       $borrarPedido = 'DELETE from mesa_pedidos
+        WHERE mesa_pedidos.mesa_id = ' . $id . ' ';
+        
+        DB::select($borrarPedido); 
     }
 
 }
