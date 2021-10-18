@@ -136,13 +136,16 @@ class MesaPedidoController extends Controller
                 WHERE  historico_mesas.id = ' . $historico_id .' AND mesa_pedidos.mesa_id = ' . $id . ' ';
         
                 DB::select($generarHistoricoPedido);
+                
+                $this->borrarPedido($request);
+                $this->cambiarEstadoMesa($id);
                 DB::commit();    
             } catch(\Exception $e){
                 DB::rollback();
                 return response()->json(['message' => 'Error']);
             }
             
-            $this->borrarPedido($request);
+          //  $this->borrarPedido($request);
             return response()->json(['message' => 'Success']);
     }
 
@@ -152,6 +155,15 @@ class MesaPedidoController extends Controller
         WHERE mesa_pedidos.mesa_id = ' . $id . ' ';
         
         DB::select($borrarPedido); 
+    }
+
+    public function cambiarEstadoMesa($id){
+       
+       $estado= 'UPDATE mesas
+        SET estado = 0
+        WHERE mesas.id = ' .$id .  ' ';
+       
+       DB::select($estado);
     }
 
 }
