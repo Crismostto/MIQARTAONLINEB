@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ArticuloCategoria;
 use Illuminate\Http\Request;
 
+
 class ArticuloCategoriaController extends Controller
 {
     /**
@@ -41,7 +42,12 @@ class ArticuloCategoriaController extends Controller
      */
     public function store(Request $request)
     {
+           
+
+        $this->ValidacionRubros($request);
+
         $categoria = ArticuloCategoria::create($request -> all());
+     
         return $categoria;
 
     }
@@ -78,6 +84,9 @@ class ArticuloCategoriaController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->ValidacionRubros($request);
+
         $categoria= ArticuloCategoria::findOrFail($id);
         $categoria->update($request->all());
         return $categoria;
@@ -95,4 +104,14 @@ class ArticuloCategoriaController extends Controller
         $categoria= ArticuloCategoria::findOrFail($id);
         $categoria->delete();
     }
+
+    public function ValidacionRubros(Request $request){
+        $this->validate($request, [
+            'nombre' => 'required|regex:/^[\pL\s\-]+$/u' 
+
+        ]);
+    }
+
+
+
 }

@@ -25,7 +25,7 @@ class HistoricoMesaFactory extends Factory
         $mesa = Mesa::all()->random()->id;
         return [
             'mesa_id'=>$mesa,
-            'precio'=>$this-> faker->randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL),
+            
             'fecha_apertura'=>$this-> faker->dateTime($max = 'now', $timezone = null),
             'fecha_cierre'=>$this-> faker->dateTime($max = 'now', $timezone = null)
         ];
