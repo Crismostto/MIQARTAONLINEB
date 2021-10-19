@@ -132,6 +132,10 @@ class MesaPedidoController extends Controller
           WHERE  historico_mesas.id = ' . $historico_id .' AND mesa_pedidos.mesa_id = ' . $id . ' ';
   
           DB::select($generarHistoricoPedido);
+    
+        //borrar las filas de (pedidos) que guardamos en historicos
+        MesaPedido::find()->truncate();
+
     }
 
 }
