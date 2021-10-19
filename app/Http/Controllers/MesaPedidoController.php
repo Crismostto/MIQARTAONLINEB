@@ -89,6 +89,7 @@ class MesaPedidoController extends Controller
         //
     }
 
+    //Se imprime la lista de pedidos relacionada a cada mesa que le pertecene. 
     public function lista($id)
     {
 
@@ -102,39 +103,67 @@ class MesaPedidoController extends Controller
 
     public function cierreTotal(Request $request)
     {
-       //Pasamos el ID de la mesa
-        $id = $request->id;
 
-        //Se realiza el SELECT de la consulta en sql
-        $mesa = Mesa::where('id', $id)->get();
+        try{
+            DB::beginTransaction();
+                //Pasamos el ID de la mesa
+                $id = $request->id;
 
-         // Se realiza el INSERT INTO con el create dentro de HistoricoMesa y le pasamos los siguientes parametros.
-         //'mesa_id','fecha_apertura', 'fecha_cierre'
-            $hm = HistoricoMesa::create([
-                'mesa_id' => $mesa[0]->id,
-                'fecha_apertura' => $mesa[0]->fechaApertura,
-                'fecha_cierre' => now() 
-            ]);
-         
-         //Se guarda la ultima posicion del ID de Historico_mesa   
-          $historico_id= $hm->id;
-          
-         //SQL donde se guarda los pedidos en  Historico_pedidos 
-          $generarHistoricoPedido = 
-          'INSERT INTO historico_mesa_pedidos (
-              historico_mesa_pedidos.historicoMesa_id,
-              historico_mesa_pedidos.articulo_id,
-              historico_mesa_pedidos.cantidad,
-              historico_mesa_pedidos.precio)
-          SELECT historico_mesas.id, mesa_pedidos.articulo_id, mesa_pedidos.cantidad, mesa_pedidos.precio 
-          FROM mesa_pedidos 
-          INNER JOIN historico_mesas
-          WHERE  historico_mesas.id = ' . $historico_id .' AND mesa_pedidos.mesa_id = ' . $id . ' ';
-  
-          DB::select($generarHistoricoPedido);
-    
-        //borrar las filas de (pedidos) que guardamos en historicos
-        MesaPedido::find()->truncate();
+                //Se realiza el SELECT de la consulta en sql
+                $mesa = Mesa::where('id', $id)->get();
+
+                // Se realiza el INSERT INTO con el create dentro de HistoricoMesa y le pasamos los siguientes parametros.
+                //'mesa_id','fecha_apertura', 'fecha_cierre'
+                    $hm = HistoricoMesa::create([
+                        'mesa_id' => $mesa[0]->id,
+                        'fecha_apertura' => $mesa[0]->fechaApertura,
+                        'fecha_cierre' => now() 
+                    ]);
+                
+                //Se guarda la ultima posicion del ID de Historico_mesa   
+                $historico_id= $hm->id;
+                
+                //SQL donde se guarda los pedidos en  Historico_pedidos 
+                $generarHistoricoPedido = 
+                'INSERT INTO historico_mesa_pedidos (
+                    historico_mesa_pedidos.historicoMesa_id,
+                    historico_mesa_pedidos.articulo_id,
+                    historico_mesa_pedidos.cantidad,
+                    historico_mesa_pedidos.precio)
+                SELECT historico_mesas.id, mesa_pedidos.articulo_id, mesa_pedidos.cantidad, mesa_pedidos.precio 
+                FROM mesa_pedidos 
+                INNER JOIN historico_mesas
+                WHERE  historico_mesas.id = ' . $historico_id .' AND mesa_pedidos.mesa_id = ' . $id . ' ';
+        
+                DB::select($generarHistoricoPedido);
+                
+                $this->borrarPedido($request);
+                $this->cambiarEstadoMesa($id);
+                DB::commit();    
+            } catch(\Exception $e){
+                DB::rollback();
+                return response()->json(['message' => 'Error']);
+            }
+            
+          //  $this->borrarPedido($request);
+            return response()->json(['message' => 'Success']);
+    }
+
+    public function borrarPedido(Request $request){
+       $id = $request->id;
+       $borrarPedido = 'DELETE from mesa_pedidos
+        WHERE mesa_pedidos.mesa_id = ' . $id . ' ';
+        
+        DB::select($borrarPedido); 
+    }
+
+    public function cambiarEstadoMesa($id){
+       
+       $estado= 'UPDATE mesas
+        SET estado = 0
+        WHERE mesas.id = ' .$id .  ' ';
+       
+       DB::select($estado);
 
     }
 
