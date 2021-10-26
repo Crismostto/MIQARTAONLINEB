@@ -16,7 +16,7 @@ class CreateMesaPedidosTable extends Migration
         Schema::create('mesa_pedidos', function (Blueprint $table) {
             $table->id();
             $table->integer('cantidad');
-            $table->double('precio');
+            $table->double('precio',8,2);
             $table->unsignedBigInteger('mesa_id');
             $table->foreign('mesa_id') -> references('id') ->on ('mesas');
             $table->unsignedBigInteger('articulo_id');
