@@ -40,7 +40,8 @@ class MesaPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Pedido = MesaPedido::create($request -> all());
+        return $Pedido;
     }
 
     /**

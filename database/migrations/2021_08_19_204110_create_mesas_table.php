@@ -17,6 +17,7 @@ class CreateMesasTable extends Migration
             $table->id();
             $table-> integer('estado');
             $table-> datetime('fechaApertura');
+            $table-> string('urlQr');
             $table->timestamps();
         });
     }
