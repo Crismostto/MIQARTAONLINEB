@@ -40,7 +40,8 @@ class MesaPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Pedido = MesaPedido::create($request -> all());
+        return $Pedido;
     }
 
     /**
@@ -103,7 +104,7 @@ class MesaPedidoController extends Controller
 
     public function cierreTotal(Request $request)
     {
-       
+
         try{
             DB::beginTransaction();
                 //Pasamos el ID de la mesa
@@ -164,6 +165,7 @@ class MesaPedidoController extends Controller
         WHERE mesas.id = ' .$id .  ' ';
        
        DB::select($estado);
+
     }
 
 }

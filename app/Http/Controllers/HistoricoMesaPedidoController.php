@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\HistoricoMesaPedido;
+use App\Models\MesaPedido;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -37,7 +38,8 @@ class HistoricoMesaPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Pedido = MesaPedido::create($request -> all());
+        return $Pedido;
     }
 
     /**

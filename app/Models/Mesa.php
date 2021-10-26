@@ -11,7 +11,7 @@ class Mesa extends Model
     use HasFactory;
     
     protected $fillable = [
-        'estado','fechaApertura' 
+        'estado','fechaApertura','urlQr' 
     ];
     //1 a muchos
     public function pedidos(){

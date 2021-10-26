@@ -38,8 +38,11 @@ class ArticuloController extends Controller
     public function store(Request $request)
     {
 
+        $this->validacionArticulo($request);
+
         $articulo = Articulo::create($request -> all());
         return $articulo;
+
     }
 
     /**
@@ -74,6 +77,9 @@ class ArticuloController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $this->validacionArticulo($request);
+
         $articulo= Articulo::findOrFail($id);
         $articulo->update($request->all());
         return $articulo;
@@ -89,5 +95,17 @@ class ArticuloController extends Controller
     {
         $articulo= Articulo::findOrFail($id);
         $articulo->delete();
+    }
+
+
+    public function validacionArticulo(Request $request){
+
+        $this->validate($request, [
+            'nombre' => 'required|regex:/^[\pL\s\-]+$/u',
+            'precio' => 'required|numeric|min:1|max:99999999',
+            'descripcion' => 'required|regex:/^[\pL\s\-]+$/u',
+            'ArticuloCategorias_id' => 'required|numeric|min:1|max:99999999' 
+
+        ]);
     }
 }
