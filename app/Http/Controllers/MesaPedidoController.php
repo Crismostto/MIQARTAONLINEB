@@ -40,8 +40,9 @@ class MesaPedidoController extends Controller
      */
     public function store(Request $request)
     {
-        $Pedido = MesaPedido::create($request -> all());
-        return $Pedido;
+        $MesaPedido = MesaPedido::create($request -> all());
+     
+        return $MesaPedido;
     }
 
     /**
@@ -93,13 +94,31 @@ class MesaPedidoController extends Controller
     //Se imprime la lista de pedidos relacionada a cada mesa que le pertecene. 
     public function lista($id)
     {
-
-        $consultaPedido = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio, mesa_pedidos.mesa_id, mesa_pedidos.precio * mesa_pedidos.cantidad AS Total
+    
+    $consultaPedido = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio, mesa_pedidos.mesa_id, mesa_pedidos.precio * mesa_pedidos.cantidad AS Total
     FROM articulos INNER JOIN mesa_pedidos on articulos.id = mesa_pedidos.articulo_id
     WHERE  mesa_pedidos.mesa_id = ' . $id . ' ';
+    
+    $vistaPedido = DB::select($consultaPedido);
+    // dd($vistaPedido[0]->nombre);
+    $totalPedido=0;
+    foreach($vistaPedido as $elementoPedido){
+        $totalPedido =$totalPedido + $elementoPedido->Total;
+    } 
 
-        $vistaPedido = DB::select($consultaPedido);
-        return $vistaPedido;
+    
+        $vistaPedido[]=array(
+            
+                "id"=> 999999,
+                "nombre"=> "total",
+                "cantidad"=> 0,
+                "precio"=> 0,
+                "mesa_id"=> $id,
+                "Total"=> $totalPedido
+              
+        );
+        //  dd($vistaPedido[0]);
+         return $vistaPedido;
     }
 
     public function cierreTotal(Request $request)

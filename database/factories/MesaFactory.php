@@ -23,6 +23,7 @@ class MesaFactory extends Factory
     {
         return [
             'estado'=>$this-> faker->numberBetween($min = 0, $max = 2),
+            'urlQr'=>$this-> 
             'fechaApertura'=>$this-> faker->dateTime($max = 'now', $timezone = null)
         ];
     }
