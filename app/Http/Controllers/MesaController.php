@@ -6,7 +6,7 @@ use App\Models\Mesa;
 use App\Models\MesaPedido;
 use App\Models\Articulo;
 use Illuminate\Http\Request;
-use BD;
+use Illuminate\Support\Facades\DB;
 
 class MesaController extends Controller
 {
@@ -98,5 +98,25 @@ class MesaController extends Controller
         $mesa -> delete();
     }
     
+    public function cambiarEstadoMesa(Request $request)
+    {
+        $id= $request->idm;
+        $flag= $request->habilitar;
+        dd ($flag);
+        $estado= 'UPDATE mesas
+        SET estado = 2
+        WHERE mesas.id = ' .$id .  ' ';
+       
+       DB::select($estado);
+    }
+
+    public function cambiarEstadoMesaLibre($id)
+    {
+        $estado= 'UPDATE mesas
+        SET estado = 0
+        WHERE mesas.id = ' .$id .  ' ';
+       
+       DB::select($estado);
+    }
   
 }
