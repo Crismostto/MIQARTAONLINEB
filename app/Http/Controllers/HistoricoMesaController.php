@@ -83,4 +83,10 @@ class HistoricoMesaController extends Controller
     {
         //
     }
+    public function compararFechas(Request $request){
+          $fechaUno = $request->f1;
+          $fechaDos = $request->f2;
+        //   dd($fechaUno);
+          echo("asdasd");
+    }
 }
