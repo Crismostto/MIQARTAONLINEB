@@ -102,21 +102,22 @@ class MesaController extends Controller
     {
         $id= $request->idm;
         $flag= $request->habilitar;
-        dd ($flag);
-        $estado= 'UPDATE mesas
-        SET estado = 2
-        WHERE mesas.id = ' .$id .  ' ';
-       
-       DB::select($estado);
+        
+        if ($flag == true){
+            $estado= 'UPDATE mesas
+            SET estado = 0
+            WHERE mesas.id = ' .$id .  ' ';
+        
+            DB::select($estado);
+
+        }else{
+            $estado= 'UPDATE mesas
+            SET estado = 2
+            WHERE mesas.id = ' .$id .  ' ';
+        
+            DB::select($estado);
+       }
     }
 
-    public function cambiarEstadoMesaLibre($id)
-    {
-        $estado= 'UPDATE mesas
-        SET estado = 0
-        WHERE mesas.id = ' .$id .  ' ';
-       
-       DB::select($estado);
-    }
   
 }
