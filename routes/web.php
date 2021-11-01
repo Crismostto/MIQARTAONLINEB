@@ -25,5 +25,6 @@ Route::get('/', function () {
 
 Route::Resource('articulos/categorias', ArticuloCategoriaController::class);
 Route::Resource('articulos', ArticuloController::class);
+Route::patch('mesas/{id}',[MesaController::class, 'cambiarEstadoMesa']);
 Route::Resource('mesas', MesaController::class);
 
