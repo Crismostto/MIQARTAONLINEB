@@ -17,8 +17,9 @@ class MesaController extends Controller
      */
     public function index()
     {
-        $mesa = Mesa::all();
-         return $mesa;
+        $mesa = 'SELECT mesas.*, (SELECT SUM(cantidad*precio) FROM mesa_pedidos WHERE mesa_pedidos.mesa_id = mesas.id) AS totalMesa FROM mesas;';
+        $vistaMesa =  DB::select($mesa);
+        return $vistaMesa;
     }
  
 
@@ -98,13 +99,26 @@ class MesaController extends Controller
         $mesa -> delete();
     }
     
-    public function cambiarEstadoMesa($id)
+    public function cambiarEstadoMesa(Request $request)
     {
-        $estado= 'UPDATE mesas
-        SET estado = 2
-        WHERE mesas.id = ' .$id .  ' ';
+        $id= $request->idm;
+        $flag= $request->habilitar;
+        
+        if ($flag == true){
+            $estado= 'UPDATE mesas
+            SET estado = 0
+            WHERE mesas.id = ' .$id .  ' ';
+        
+            DB::select($estado);
 
-       DB::select($estado);
+        }else{
+            $estado= 'UPDATE mesas
+            SET estado = 2
+            WHERE mesas.id = ' .$id .  ' ';
+        
+            DB::select($estado);
+       }
     }
+
   
 }

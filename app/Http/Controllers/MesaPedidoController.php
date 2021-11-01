@@ -94,11 +94,15 @@ class MesaPedidoController extends Controller
     public function lista($id)
     {
 
-        $consultaPedido = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio, mesa_pedidos.mesa_id, mesa_pedidos.precio * mesa_pedidos.cantidad AS Total
+        $consultaPedido = 'SELECT mesa_pedidos.id,articulos.nombre, mesa_pedidos.cantidad ,mesa_pedidos.precio, mesa_pedidos.mesa_id, mesa_pedidos.precio * mesa_pedidos.cantidad AS subTotal
     FROM articulos INNER JOIN mesa_pedidos on articulos.id = mesa_pedidos.articulo_id
     WHERE  mesa_pedidos.mesa_id = ' . $id . ' ';
 
         $vistaPedido = DB::select($consultaPedido);
+        foreach ($vistaPedido as $Total){
+            $totalPedido = $Total->subTotal;
+            $this->mostrarTotalPedido($totalPedido);
+        }
         return $vistaPedido;
     }
 
@@ -167,5 +171,11 @@ class MesaPedidoController extends Controller
        DB::select($estado);
 
     }
+
+    public function mostrarTotalPedido($total){
+       
+        return $total;
+ 
+     }
 
 }
