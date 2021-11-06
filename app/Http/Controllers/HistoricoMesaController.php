@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\HistoricoMesa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HistoricoMesaController extends Controller
 {
@@ -14,8 +15,9 @@ class HistoricoMesaController extends Controller
      */
     public function index()
     {
-        $historicoMesa = HistoricoMesa::all();
-        return $historicoMesa;
+        $historicoMesa = 'SELECT historico_mesas.*, (SELECT SUM(cantidad*precio) FROM historico_mesa_pedidos WHERE historico_mesa_pedidos.historicoMesa_id = historico_mesas.id) AS totalMesa FROM historico_mesas;';
+        $vistaHistoricoMesa =  DB::select($historicoMesa);
+        return $vistaHistoricoMesa;
     }
 
     /**
