@@ -104,19 +104,28 @@ class MesaController extends Controller
         $id= $request->idm;
         $flag= $request->habilitar;
         
-        if ($flag == true){
+        if ($flag == 0){
             $estado= 'UPDATE mesas
             SET estado = 0
             WHERE mesas.id = ' .$id .  ' ';
         
             DB::select($estado);
+            return response()->json(['cod' => 200, 'mensaje' => 'Se habilito con exito']);
 
-        }else{
+        }elseif($flag == 2){
             $estado= 'UPDATE mesas
             SET estado = 2
             WHERE mesas.id = ' .$id .  ' ';
         
             DB::select($estado);
+            return response()->json(['cod' => 200, 'mensaje' => 'Se cerro la mesa con exito']);
+       }elseif($flag== 3){
+        $estado= 'UPDATE mesas
+        SET estado = 3
+        WHERE mesas.id = ' .$id .  ' ';
+    
+        DB::select($estado);
+        return response()->json(['cod' => 200, 'mensaje' => 'Se realizo el pedido con exito']);
        }
     }
 

@@ -151,7 +151,7 @@ class MesaPedidoController extends Controller
             }
             
           //  $this->borrarPedido($request);
-            return response()->json(['message' => 'Success']);
+            return response()->json(['message' => 'Success','cod' => 200]);
     }
 
     public function borrarPedido(Request $request){

@@ -90,7 +90,7 @@ class HistoricoMesaPedidoController extends Controller
     public function lista($id)
     {
 
-        $consultaPedido = 'SELECT historico_mesa_pedidos.id,articulos.nombre, historico_mesa_pedidos.cantidad ,historico_mesa_pedidos.precio, historico_mesa_pedidos.historicoMesa_id, historico_mesa_pedidos.precio * historico_mesa_pedidos.cantidad AS Total
+        $consultaPedido = 'SELECT historico_mesa_pedidos.id,articulos.nombre, historico_mesa_pedidos.cantidad ,historico_mesa_pedidos.precio, historico_mesa_pedidos.historicoMesa_id, historico_mesa_pedidos.precio * historico_mesa_pedidos.cantidad AS subTotal
     FROM articulos INNER JOIN historico_mesa_pedidos on articulos.id = historico_mesa_pedidos.articulo_id
     WHERE   historico_mesa_pedidos.historicoMesa_id = ' . $id . ' ';
 
