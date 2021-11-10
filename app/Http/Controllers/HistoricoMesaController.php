@@ -142,7 +142,7 @@ class HistoricoMesaController extends Controller
           ->joinSub($prueba, 'prueba', function($join) use($id){ 
              $join->on('historico_mesas.id', '=', 'prueba.historicoMesa_id')
                   ->where('historico_mesas.mesa_id', '=', $id);
-          })->paginate(10);
+          })->paginate(5);
           return [
             'paginate'=> [
                 'total'=> $historicoMesa->total(),
