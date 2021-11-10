@@ -6,6 +6,8 @@ use App\Models\HistoricoMesa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
+use Symfony\Component\Console\Logger\ConsoleLogger;
+use Illuminate\Pagination\Paginator;
 
 class HistoricoMesaController extends Controller
 {
@@ -153,5 +155,39 @@ class HistoricoMesaController extends Controller
             'tasks' => $historicoMesa->items() ,
             'totalMesa' => $totalmesa1
         ];
+    }
+
+    public function filtroFecha(Request $request)
+    {
+        $fechauno=  strtotime($request->fechaUno); 
+        
+        $fechados=  strtotime($request->fechaDos);
+
+        //Obteniendo total de los pedidos de cada mesa. 
+        $prueba = DB::table('historico_mesa_pedidos')
+        ->select ('historicoMesa_id', DB::raw('SUM(cantidad*precio) as totalMesa'))
+        ->groupBy('historicoMesa_id');
+
+         //Obteniendo las mesas junto con el total obtenido anteriormente.
+         $historicoMesa= DB::table('historico_mesas')
+         ->joinSub($prueba, 'prueba', function($join){ 
+            $join->on('historico_mesas.id', '=', 'prueba.historicoMesa_id');
+         })->get();
+
+        // Obteniendo las MESAS filtradas con las fechas y su Total de cada una && ademas se obtiene la SUMA TOTAL de todas esas mesas donde se guarda en $totalFechaFiltrada. 
+         $totalFechaFiltrada= 0; 
+        foreach ($historicoMesa as $fecha) {
+             if( $fechauno < strtotime($fecha->fecha_cierre) && $fechados >= strtotime($fecha->fecha_cierre) - (60*60*24)  )
+             {
+                $arrayFechasFiltradas[]= $fecha; 
+                $totalFechaFiltrada= $totalFechaFiltrada + $fecha->totalMesa;
+             }
+         }
+
+        //  dd($arrayFechasFiltradas , $totalFechaFiltrada);
+         return[
+             'totalFiltroFecha'=>  $totalFechaFiltrada,
+             'arrayFiltradoFecha'=> $arrayFechasFiltradas
+         ];
     }
 }
