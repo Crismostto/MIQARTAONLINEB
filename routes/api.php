@@ -30,6 +30,10 @@ Route::get('pedidos/mesa/{id}',[MesaPedidoController::class, 'lista'],function($
 
 Route::post('cierre',[MesaPedidoController::class, 'cierreTotal']);
 
+
+
+Route::get('historico/mesas/filtro/mesa/{id}', [HistoricoMesaController::class , 'filtroMesa']);
+Route::get('historico/mesas/filtro/fecha/{fechaUno}/{fechaDos}', [HistoricoMesaController::class , 'filtroFecha']);
 Route::Resource('historico/mesas', HistoricoMesaController::class);
 
 Route::get('historico/pedidos/{id}',[HistoricoMesaPedidoController::class, 'lista'],function($id){
